@@ -1,163 +1,124 @@
 <?php
 
-// wajib include terlebih dahulu 
-require_once 'CollectionInterface.php';
-require_once 'ListInterface.php';
-require_once 'QueueInterface.php';
-require_once 'MapInterface.php';
-require_once 'IteratorInterface.php';
-require_once 'ArrayList.php';
-require_once 'LinkedList.php';
-require_once 'Stack.php';
-require_once 'Queue.php';
-require_once 'HashMap.php';
+require_once 'autoload.php';
 
-class TugasUTS {
+class TugasStrukdat {
     
-    public static function jalankan() {
-        echo "=== TUGAS STRUKTUR DATA - UTS ===\n\n";
-        echo "Nama: Budi Santoso\n";
-        echo "NIM: 123456789\n";
-        echo "Kelas: TI-2024-A\n\n";
+    public static function main() {
+        echo "=================================\n";
+        echo "TUGAS BESAR STRUKTUR DATA\n";
+        echo "Collection Framework PHP\n";
+        echo "=================================\n\n";
         
-        // panggil method test
-        self::testArrayList();
-        self::testLinkedList(); 
-        self::testStack();
-        self::testQueue();
-        self::testHashMap();
+        // jalanin semua test
+        self::ujiCobaArrayList();
+        self::ujiCobaLinkedList();
+        self::ujiCobaStack();
+        self::ujiCobaQueue();
+        self::ujiCobaHashMap();
         
-        echo "\n=== SELESAI ===\n";
+        echo "\n=================================\n";
+        echo "TERIMA KASIH\n";
+        echo "=================================\n";
     }
     
-    // nomor 1 - test array list
-    private static function testArrayList() {
-        echo "1. TEST ARRAY LIST:\n";
+    private static function ujiCobaArrayList() {
+        echo "1. UJI COBA ARRAY LIST\n";
+        echo "-----------------------\n";
         
-        // buat objek array list
-        $listBuah = new ArrayList();
+        $list = new ArrayList();
         
-        // tambah data buah
-        $listBuah->add("Apel");
-        $listBuah->add("Jeruk");
-        $listBuah->add("Mangga");
-        $listBuah->insert(1, "Pisang"); // sisipkan di tengah
+        // tambah data
+        $list->add("Data 1");
+        $list->add("Data 2");
+        $list->add("Data 3");
+        $list->insert(1, "Data 1.5");
         
-        // tampilkan
-        echo "List buah: " . $listBuah . "\n";
-        echo "Jumlah data: " . $listBuah->size() . "\n";
-        echo "Data index ke-2: " . $listBuah->get(2) . "\n";
+        echo "Isi list: " . $list . "\n";
+        echo "Size: " . $list->size() . "\n";
+        echo "Get index 0: " . $list->get(0) . "\n";
         
-        // cari data
-        $cari = "Jeruk";
-        if ($listBuah->contains($cari)) {
-            echo "Ketemu nih '$cari' di list\n";
-        } else {
-            echo "Ga ada '$cari' di list\n";
+        // test 
+        if ($list->contains("Data 2")) {
+            echo "Data 2 ada dalam list\n";
         }
         
-        // hapus data
-        $listBuah->remove("Jeruk");
-        echo "Setelah hapus Jeruk: " . $listBuah . "\n\n";
+        $list->remove("Data 2");
+        echo "Setelah remove Data 2: " . $list . "\n\n";
     }
     
-    // nomor 2 - test linked list  
-    private static function testLinkedList() {
-        echo "2. TEST LINKED LIST:\n";
+    private static function ujiCobaLinkedList() {
+        echo "2. UJI COBA LINKED LIST\n";
+        echo "-------------------------\n";
         
-        $listAngka = new LinkedList();
+        $list = new LinkedList();
         
-        // masukin angka
-        $listAngka->add(100);
-        $listAngka->add(200);
-        $listAngka->add(300);
-        $listAngka->insert(1, 150); // tambah di tengah
+        $list->add(100);
+        $list->add(200);
+        $list->add(300);
+        $list->insert(1, 150);
         
-        echo $listAngka . "\n";
-        echo "Total angka: " . $listAngka->size() . "\n";
-        echo "Angka pertama: " . $listAngka->get(0) . "\n";
+        echo "Isi linked list: " . $list . "\n";
+        echo "Size: " . $list->size() . "\n";
+        echo "Index of 150: " . $list->indexOf(150) . "\n";
         
-        // cari posisi angka 150
-        $posisi = $listAngka->indexOf(150);
-        echo "Angka 150 ada di index: " . $posisi . "\n";
-        
-        // hapus angka di tengah
-        $listAngka->removeAt(2);
-        echo "Setelah hapus index 2: " . $listAngka . "\n\n";
+        $list->removeAt(1);
+        echo "Setelah remove index 1: " . $list . "\n\n";
     }
     
-    // nomor 3 - test stack (tumpukan)
-    private static function testStack() {
-        echo "3. TEST STACK (TUMPUKAN):\n";
+    private static function ujiCobaStack() {
+        echo "3. UJI COBA STACK\n";
+        echo "------------------\n";
         
-        $tumpukan = new Stack();
+        $stack = new Stack();
         
-        // masukin data ke stack
-        $tumpukan->push("Buku 1");
-        $tumpukan->push("Buku 2"); 
-        $tumpukan->push("Buku 3");
+        $stack->push("Item 1");
+        $stack->push("Item 2");
+        $stack->push("Item 3");
         
-        echo $tumpukan . "\n";
-        echo "Yang paling atas: " . $tumpukan->peek() . "\n";
-        
-        // ambil dari stack
-        $ambil = $tumpukan->pop();
-        echo "Yang diambil: " . $ambil . "\n";
-        echo "Sisa tumpukan: " . $tumpukan . "\n\n";
+        echo "Stack: " . $stack . "\n";
+        echo "Peek: " . $stack->peek() . "\n";
+        echo "Pop: " . $stack->pop() . "\n";
+        echo "Stack sekarang: " . $stack . "\n\n";
     }
     
-    // nomor 4 - test queue (antrian)
-    private static function testQueue() {
-        echo "4. TEST QUEUE (ANTRIAN):\n";
+    private static function ujiCobaQueue() {
+        echo "4. UJI COBA QUEUE\n";
+        echo "------------------\n";
         
-        $antrian = new Queue();
+        $queue = new Queue();
         
-        // antri masuk
-        $antrian->enqueue("Orang 1");
-        $antrian->enqueue("Orang 2");
-        $antrian->enqueue("Orang 3");
+        $queue->enqueue("Pasien 1");
+        $queue->enqueue("Pasien 2");
+        $queue->enqueue("Pasien 3");
         
-        echo $antrian . "\n";
-        echo "Yang paling depan: " . $antrian->peek() . "\n";
-        
-        // panggil dari antrian
-        $panggil = $antrian->dequeue();
-        echo "Yang dipanggil: " . $panggil . "\n";
-        echo "Sisa antrian: " . $antrian . "\n\n";
+        echo "Queue: " . $queue . "\n";
+        echo "Peek: " . $queue->peek() . "\n";
+        echo "Dequeue: " . $queue->dequeue() . "\n";
+        echo "Queue sekarang: " . $queue . "\n\n";
     }
     
-    // nomor 5 - test hash map
-    private static function testHashMap() {
-        echo "5. TEST HASH MAP:\n";
+    private static function ujiCobaHashMap() {
+        echo "5. UJI COBA HASH MAP\n";
+        echo "---------------------\n";
         
-        $dataMahasiswa = new HashMap();
+        $map = new HashMap();
         
-        // input data
-        $dataMahasiswa->put("nama", "Budi Santoso");
-        $dataMahasiswa->put("nim", "123456789");
-        $dataMahasiswa->put("jurusan", "Teknik Informatika");
-        $dataMahasiswa->put("ipk", 3.75); // update nilai
+        $map->put("nama", "Bahlil ETANHOL");
+        $map->put("nim", "H1H025067");
+        $map->put("matkul", "Struktur Data");
         
-        echo $dataMahasiswa . "\n";
-        echo "Banyak data: " . $dataMahasiswa->size() . "\n";
-        echo "Nama: " . $dataMahasiswa->get("nama") . "\n";
+        echo "Hash Map: " . $map . "\n";
+        echo "Size: " . $map->size() . "\n";
+        echo "Get nim: " . $map->get("nim") . "\n";
         
-        // cek data
-        if ($dataMahasiswa->containsKey("jurusan")) {
-            echo "Data jurusan ada\n";
-        }
-        
-        // hapus data
-        $dataMahasiswa->remove("ipk");
-        echo "Setelah hapus IPK: " . $dataMahasiswa . "\n";
-        
-        // tampilkan semua kunci dan nilai
-        echo "Kunci: " . implode(', ', $dataMahasiswa->keys()) . "\n";
-        echo "Nilai: " . implode(', ', $dataMahasiswa->values()) . "\n";
+        $map->remove("matkul");
+        echo "Setelah remove matkul: " . $map . "\n";
+        echo "Keys: " . implode(", ", $map->keys()) . "\n";
     }
 }
 
-// jalankan program
-TugasUTS::jalankan();
+// jalanin program
+TugasStrukdat::main();
 
 ?>
